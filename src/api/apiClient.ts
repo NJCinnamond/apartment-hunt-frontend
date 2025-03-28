@@ -5,7 +5,7 @@
 import { OpenAPI } from './generated';
 import { DefaultService } from './generated';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8001';
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8001';
 
 class ApiClient {
     constructor() {
