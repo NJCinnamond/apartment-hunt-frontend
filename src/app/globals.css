@@ -14,6 +14,9 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -25,9 +28,9 @@ body {
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
@@ -39,4 +42,10 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+/* Add this to remove any Next.js default padding */
+body > div {
+  width: 100%;
+  height: 100%;
 }
