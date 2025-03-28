@@ -11,13 +11,6 @@ import { apiClient } from '@/api/apiClient';
 // Replace this with your Mapbox access token
 const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoibmpjaW5uYW1vbmQiLCJhIjoiY204cDk5NWtsMDh2cTJscHpzcGVxZHVnNiJ9.q71yKOo7G87RMu1g3VUIhA';
 
-// NYC coordinates
-const NYC_CENTER = {
-  lng: -73.935242,
-  lat: 40.730610,
-  zoom: 12
-};
-
 interface MapProps {
   width?: string;
   height?: string;
@@ -25,22 +18,7 @@ interface MapProps {
   onNeedMore?: () => void;
 }
 
-const createMarkerElement = (isActive: boolean) => {
-  const el = document.createElement('div');
-  el.style.width = '24px';
-  el.style.height = '24px';
-  el.style.backgroundColor = '#ffffff'; // white background
-  el.style.borderRadius = '50%';
-  el.style.border = `3px solid ${isActive ? '#44dd44' : '#1a73e8'}`; // border color changes for active state
-  el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
-  el.style.cursor = 'pointer';
-  el.style.transition = 'border-color 0.3s ease';
-  return el;
-};
-
-const Map: React.FC<MapProps> = ({ 
-  width = '100%', 
-  height = '500px',
+const Map: React.FC<MapProps> = ({
   rentals = [],
   onNeedMore
 }) => {

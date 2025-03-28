@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, MotionValue, useMotionValue, useTransform } from 'framer-motion';
 import styles from './RentalPopup.module.css';
 import { PanInfo } from 'framer-motion';
 import { RentalResponse } from '@/api/generated';
@@ -12,7 +12,7 @@ interface RentalPopupProps {
     onClose: () => void;
 }
 
-const SwipeFeedback = ({ x }: { x: any }) => {
+const SwipeFeedback = ({ x }: { x: MotionValue<number> }) => {
     const leftOpacity = useTransform(x, [-100, -50], [1, 0]);
     const rightOpacity = useTransform(x, [50, 100], [0, 1]);
 
@@ -59,9 +59,9 @@ export const RentalPopup: React.FC<RentalPopupProps> = ({ rental, onSwipe, onClo
     const x = useMotionValue(0);
     const rotate = useTransform(x, [-200, 200], [-10, 10]);
 
-    const handleDragEnd = async (event: any, info: PanInfo) => {
-        if (Math.abs(info.offset.x) > 100) {
-            const direction = info.offset.x > 0 ? 'right' : 'left';
+    const handleDragEnd = async ({ offset }: PanInfo) => {
+        if (Math.abs(offset.x) > 100) {
+            const direction = offset.x > 0 ? 'right' : 'left';
             await onSwipe(direction);
         } else {
             // Return to center if not swiped far enough
