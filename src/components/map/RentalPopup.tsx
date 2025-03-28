@@ -59,9 +59,9 @@ export const RentalPopup: React.FC<RentalPopupProps> = ({ rental, onSwipe, onClo
     const x = useMotionValue(0);
     const rotate = useTransform(x, [-200, 200], [-10, 10]);
 
-    const handleDragEnd = async ({ offset }: PanInfo) => {
-        if (Math.abs(offset.x) > 100) {
-            const direction = offset.x > 0 ? 'right' : 'left';
+    const handleDragEnd = async (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+        if (Math.abs(info.offset.x) > 100) {
+            const direction = info.offset.x > 0 ? 'right' : 'left';
             await onSwipe(direction);
         } else {
             // Return to center if not swiped far enough
